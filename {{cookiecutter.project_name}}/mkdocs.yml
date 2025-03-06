@@ -25,17 +25,31 @@ plugins:
 theme:
   name: material
   features:
-    # - navigation.tabs
-    - navigation.sections
-    - toc.integrate
+    - navigation.footer
+    - navigation.indexes
+    - navigation.instant
+    - navigation.instant.prefetch
+    # - navigation.instant.preview
+    - navigation.instant.progress
+    - navigation.path
+    - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.top
+    - navigation.tracking
+    # - navigation.sections
+    # - toc.integrate
+    - toc.follow
     - search.suggest
     - search.highlight
     - content.tabs.link
-    - content.code.annotation
+    # - content.code.annotation
+    # - content.code.select
+    - content.code.annotate
     - content.code.copy
-  feature:
-    tabs: true
+    - content.tooltips
+    - content.footnote.tooltips
+  # feature:
+  #   tabs: true
   palette:
     - media: "(prefers-color-scheme)"
       toggle:
