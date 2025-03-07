@@ -5,7 +5,8 @@ site_description: {{cookiecutter.project_description}}
 site_author: {{cookiecutter.author}}
 edit_uri: edit/main/docs/
 repo_name: {{cookiecutter.author_github_handle}}/{{cookiecutter.project_name}}
-copyright: Maintained by <a href="https://{{cookiecutter.author_github_handle}}.com">{{cookiecutter.author_github_handle}}</a>.
+# copyright: Maintained by <a href="https://{{cookiecutter.author_github_handle}}.com">{{cookiecutter.author_github_handle}}</a>.
+copyright: Maintained by <a href="https://github.com/{{cookiecutter.author_github_handle}}">{{cookiecutter.author}}</a>.
 
 nav:
   - Home: index.md
@@ -22,6 +23,25 @@ plugins:
             "{{cookiecutter.project_slug}}"
             {%- endif -%}
             ]
+          options:
+            extensions:
+            - griffe_typingdoc
+            show_root_heading: true
+            show_if_no_docstring: true
+            # preload_modules:
+            # - httpx
+            # - starlette
+            inherited_members: true
+            members_order: source
+            separate_signature: true
+            unwrap_annotated: true
+            filters:
+            - '!^_'
+            merge_init_into_class: true
+            docstring_section_style: spacy
+            signature_crossrefs: true
+            show_symbol_type_heading: true
+            show_symbol_type_toc: true
 theme:
   name: material
   features:
@@ -40,6 +60,7 @@ theme:
     # - toc.integrate
     - toc.follow
     - search.suggest
+    - search.share
     - search.highlight
     - content.tabs.link
     # - content.code.annotation
