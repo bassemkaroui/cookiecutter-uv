@@ -2,9 +2,7 @@
 name = "{{cookiecutter.project_name}}"
 version = "0.0.1"
 description = "{{cookiecutter.project_description}}"
-authors = [
-    { name = "{{cookiecutter.author}}", email = "{{cookiecutter.email}}" },
-]
+authors = [{ name = "{{cookiecutter.author}}", email = "{{cookiecutter.email}}" }]
 readme = "README.md"
 keywords = ['python']
 requires-python = ">=3.9,<4.0"
@@ -41,16 +39,14 @@ dev = [
 ]
 
 [build-system]
-
-
-{% if cookiecutter.layout == "flat" -%}
 requires = ["hatchling"]
 build-backend = "hatchling.build"
-[tool.setuptools]
 
+{% if cookiecutter.layout == "flat" -%}
+[tool.setuptools]
+py-modules = ["{{cookiecutter.project_slug}}"]
 {%- endif %}
 
-py-modules = ["{{cookiecutter.project_slug}}"]
 [tool.mypy]
 files = [
     {%- if cookiecutter.layout == "src" -%}
@@ -96,8 +92,7 @@ select = [
     # mccabe
     "C90",
     # pycodestyle
-    "E",
-    "W",
+    "E", "W",
     # pyflakes
     "F",
     # pygrep-hooks
@@ -120,14 +115,14 @@ ignore = [
 "tests/*" = ["S101"]
 
 [tool.ruff.format]
-
+preview = true
 
 {% if cookiecutter.codecov == "y"-%}
-preview = true
 [tool.coverage.report]
 skip_empty = true
 
 [tool.coverage.run]
+branch = true
 source = [
     {%- if cookiecutter.layout == "src" -%}
     "src"
@@ -136,4 +131,3 @@ source = [
     {%- endif -%}
 ]
 {% endif %}
-branch = true
