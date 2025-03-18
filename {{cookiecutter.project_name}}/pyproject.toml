@@ -1,6 +1,10 @@
 [project]
 name = "{{cookiecutter.project_name}}"
+{% if cookiecutter.versioning == "dynamic" -%}
+dynamic = ["version"]
+{%- else -%}
 version = "0.0.1"
+{%- endif -%}
 description = "{{cookiecutter.project_description}}"
 authors = [{ name = "{{cookiecutter.author}}", email = "{{cookiecutter.email}}" }]
 readme = "README.md"
@@ -39,8 +43,34 @@ dev = [
 ]
 
 [build-system]
+{% if cookiecutter.versioning == "dynamic" -%}
+requires = ["hatchling", "uv-dynamic-versioning"]
+{%- else -%}
 requires = ["hatchling"]
+{%- endif -%}
 build-backend = "hatchling.build"
+
+{% if cookiecutter.versioning == "dynamic" -%}
+[tool.hatch.version]
+source = "uv-dynamic-versioning"
+
+[tool.uv-dynamic-versioning]
+vcs = "git"
+style = "pep440"
+bump = true
+
+[tool.hatch.build.hooks.version]
+path = "src/pyconfigx/_version.py"
+template = '''
+version = "{version}"
+'''
+{%- endif -%}
+
+[tool.uv]
+cache-keys = [
+    { file = "pyproject.toml" },
+    { git = { commit = true, tags = true } },
+]
 
 {% if cookiecutter.layout == "flat" -%}
 [tool.setuptools]
