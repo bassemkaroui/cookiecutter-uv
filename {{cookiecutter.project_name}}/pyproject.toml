@@ -9,12 +9,12 @@ description = "{{cookiecutter.project_description}}"
 authors = [{ name = "{{cookiecutter.author}}", email = "{{cookiecutter.email}}" }]
 readme = "README.md"
 keywords = ['python']
-requires-python = ">=3.9,<4.0"
+requires-python = ">=3.10,<4.0"
 classifiers = [
     "Intended Audience :: Developers",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.9",
+    # "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
@@ -35,7 +35,7 @@ dev = [
     {% if cookiecutter.deptry == 'y' %}"deptry>=0.22.0",{% endif %}
     "mypy>=0.991",
     {% if cookiecutter.codecov == 'y' %}"pytest-cov>=4.0.0",{% endif %}
-    "ruff>=0.9.2",
+    "ruff>=0.11.2",
     {% if cookiecutter.mkdocs == 'y' %}"mkdocs>=1.4.2",
     "mkdocs-material>=8.5.10",
     "mkdocstrings[python]>=0.26.1",
@@ -89,7 +89,7 @@ files = [
     {%- endif -%}
 ]
 disallow_untyped_defs = true
-disallow_any_unimported = true
+# disallow_any_unimported = true
 no_implicit_optional = true
 check_untyped_defs = true
 warn_return_any = true
@@ -100,8 +100,9 @@ show_error_codes = true
 testpaths = ["tests"]
 
 [tool.ruff]
-target-version = "py39"
-line-length = 120
+# extend = "~/.config/nvim/ruff/pyproject.toml"
+target-version = "py310"
+line-length = 100
 fix = true
 
 [tool.ruff.lint]
@@ -120,6 +121,8 @@ select = [
     "T10",
     # flake8-simplify
     "SIM",
+    # flake8-future-annotations
+    "FA",
     # isort
     "I",
     # mccabe
@@ -136,12 +139,39 @@ select = [
     "RUF",
     # tryceratops
     "TRY",
+    # NumPy-specific rules
+    "NPY",
+    # pandas-vet
+    "PD",
+    # pep8-naming
+    "N",
+    # flake8-pytest-style
+    "PT",
+    # flake8-pie
+    "PIE",
+    # flake8-tidy-imports
+    "TID",
+    # flake8-implicit-str-concat
+    "ISC",
+    # Perflint
+    "PERF",
+    # flynt
+    "FLY",
+    # unconventional-import-alias
+    "ICN001",
 ]
 ignore = [
     # LineTooLong
     "E501",
-    # DoNotAssignLambda
-    "E731",
+    # indentation-with-invalid-multiple
+    "E111",
+    # indentation-with-invalid-multiple-comment
+    "E114",
+    # over-indented
+    "E117",
+    # tab-indentation
+    "W191",
+
 ]
 
 [tool.ruff.lint.per-file-ignores]
@@ -149,6 +179,11 @@ ignore = [
 
 [tool.ruff.format]
 preview = true
+docstring-code-format = true
+
+# [tool.ruff.lint.isort]
+# # Useful when using Python < 3.10
+# required-imports = ["from __future__ import annotations"]
 
 {% if cookiecutter.codecov == "y"-%}
 [tool.coverage.report]
