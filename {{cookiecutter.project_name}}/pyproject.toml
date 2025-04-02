@@ -159,6 +159,8 @@ select = [
     "FLY",
     # unconventional-import-alias
     "ICN001",
+    # pylint
+    "PL",
 ]
 ignore = [
     # LineTooLong
@@ -171,6 +173,38 @@ ignore = [
     "E117",
     # tab-indentation
     "W191",
+    # too-many-public-methods
+    "PLR0904",
+    # Too many returns
+    "PLR0911",
+    # Too many branches
+    "PLR0912",
+    # Too many arguments to function call
+    "PLR0913",
+    # too-many-locals
+    "PLR0914",
+    # Too many statements
+    "PLR0915",
+    # too-many-boolean-expressions
+    "PLR0916",
+    # Too many positional arguments
+    "PLR0917",
+    # too-many-nested-blocks
+    "PLR1702",
+    # literal-membership
+    "PLR6201",
+    # Private name import
+    "PLC2701",
+    # compare-to-empty-string
+    "PLC1901",
+    # import-outside-toplevel
+    "PLC0415",
+    # unnecessary-dunder-call
+    "PLC2801",
+    # Global statements are discouraged
+    "PLW0603",
+    # unspecified-encoding
+    "PLW1514",
 
 ]
 
