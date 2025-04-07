@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
       fail-fast: false
     defaults:
       run:
@@ -44,7 +44,7 @@ jobs:
           python-version: {% raw %}${{ matrix.python-version }}{% endraw %}
 
       - name: Run tests
-        run: uv run python -m pytest tests {% if cookiecutter.codecov == "y" %}--cov --cov-config=pyproject.toml --cov-report=xml{%- endif %}
+        run: uv run python -m pytest tests --cov --cov-config=pyproject.toml --cov-report=xml --cov-report=term-missing -vv
 
       - name: Check typing
         run: uv run mypy
