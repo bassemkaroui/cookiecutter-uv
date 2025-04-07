@@ -229,7 +229,7 @@ exclude_lines = [
     "if self\\.debug",
     "if __name__ == .__main__.:",
 ]
-omit = ["*/__init__.py"]
+omit = ["*/__init__.py", "*/{{cookiecutter.project_slug}}/testing/*"]
 
 [tool.coverage.run]
 branch = true
