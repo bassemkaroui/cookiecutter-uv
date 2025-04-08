@@ -207,6 +207,8 @@ ignore = [
     "PLW0603",
     # unspecified-encoding
     "PLW1514",
+    # raise-vanilla-args
+    "TRY003",
 
 ]
 
